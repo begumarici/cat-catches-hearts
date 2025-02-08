@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #fce4ec, #ffb6c1);
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: top center;
+    font-family: 'Poppins', sans-serif;
+    color: #5a3a3a;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.heart-bar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    background: rgba(245, 222, 179, 0.9);
+    border: 3px solid #b5651d;
+    padding: 8px;
+    border-radius: 9px;
+    display: flex;
+    gap: 6px;
+    image-rendering: pixelated;
+}
+
+.heart-segment {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+    filter: grayscale(100%) brightness(0.8);
+}
+
+.heart-segment.filled {
+    content: url('heart.svg');
+    filter: none;
+}
+
+.cat {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.5));
+}
+
+.heart {
+    position: absolute;
+    top: -40px;
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    filter: drop-shadow(2px 2px 2px rgba(255, 100, 100, 0.5));
+    z-index: 1;
+}
+
+.heart.collected, .heart.clear-out {
+    opacity: 0;
+    transform: scale(1.5);
+    filter: brightness(2);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+@keyframes glow {
+    0% { opacity: 1; transform: scale(1); filter: brightness(1); }
+    50% { opacity: 0.8; transform: scale(1.2); filter: brightness(1.5); }
+    100% { opacity: 0; transform: scale(1.5); filter: brightness(2); }
+}
+
+.heart.collected {
+    animation: glow 0.3s ease-out;
+    opacity: 0;
+    transform: scale(1.5);
+}
+
+.heart-icon {
+    width: 22px;
+    height: 22px;
+    image-rendering: pixelated;
+    vertical-align: middle;
+    margin: 0 4px;
+}
+
+.end-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(245, 222, 179, 0.9);
+    color: #5a3a3a;
+    border: 3px solid #b5651d;
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    letter-spacing: 1px;
+    width: fit-content;
+    max-width: 80%;
+}
+
+.end-message.visible {
+    opacity: 1;
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: url('ground.png');
+    background-size: contain;
+    background-repeat: repeat-x;
+    image-rendering: pixelated;
+    z-index: 2;
+}
+
+.clouds {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: url('clouds.png');
+    padding: 70px;
+    background-size: 40% auto;
+    background-repeat: repeat-x;
+    z-index: -1;
+    pointer-events: none;
+}
